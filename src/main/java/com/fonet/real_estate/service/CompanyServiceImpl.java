@@ -28,7 +28,7 @@ public class CompanyServiceImpl implements CompanyService{
     @Override
     public Company findById(Long id) {
         return companyRepository.findById(id)
-                .orElseThrow(() -> new CompanyNotFoundException(id + "ID'li şirket bulunamadı!"));
+                .orElseThrow(() -> new CompanyNotFoundException(id + " ID'li şirket bulunamadı!"));
     }
 
     @Override
@@ -55,7 +55,7 @@ public class CompanyServiceImpl implements CompanyService{
     public Company update(Long id, Company company) {
 
         Company companyToUpdate = companyRepository.findById(id)
-                .orElseThrow(() -> new CompanyNotFoundException(id + "ID'li şirket bulunamadı!"));
+                .orElseThrow(() -> new CompanyNotFoundException(id + " ID'li şirket bulunamadı!"));
 
         if(company.getName() != null)
             companyToUpdate.setName(company.getName());

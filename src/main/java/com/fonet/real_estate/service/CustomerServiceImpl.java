@@ -2,6 +2,7 @@ package com.fonet.real_estate.service;
 
 import com.fonet.real_estate.entity.Company;
 import com.fonet.real_estate.entity.Customer;
+import com.fonet.real_estate.exceptions.CustomerNotFoundException;
 import com.fonet.real_estate.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer findById(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new CustomerNotFoundException(id + " ID'li müşteri bulunamadı!"));
     }
 
     @Override
@@ -56,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer update(Long id, Customer customer) {
 
         Customer customerToUpdate = customerRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new CustomerNotFoundException(id + " ID'li müşteri bulunamadı!"));
 
 
         if(customer.getFirstName() != null)

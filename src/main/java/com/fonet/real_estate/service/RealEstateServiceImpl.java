@@ -1,6 +1,8 @@
 package com.fonet.real_estate.service;
 
 import com.fonet.real_estate.entity.RealEstate;
+import com.fonet.real_estate.exceptions.CustomerNotFoundException;
+import com.fonet.real_estate.exceptions.RealEstateNotFoundException;
 import com.fonet.real_estate.repository.RealEstateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,7 @@ public class RealEstateServiceImpl implements RealEstateService{
     @Override
     public RealEstate findById(Long id) {
         return realEstateRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new RealEstateNotFoundException(id + " ID'li ilan bulunamadı!"));
     }
 
     @Override
@@ -54,7 +56,7 @@ public class RealEstateServiceImpl implements RealEstateService{
     public RealEstate update(Long id, RealEstate realEstate) {
 
         RealEstate realEstateToUpdate = realEstateRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new RealEstateNotFoundException(id + " ID'li ilan bulunamadı!"));
 
         if(realEstate.getType() != null)
             realEstateToUpdate.setType(realEstate.getType());
