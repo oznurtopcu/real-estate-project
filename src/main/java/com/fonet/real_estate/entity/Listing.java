@@ -1,8 +1,6 @@
 package com.fonet.real_estate.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Objects;
@@ -14,7 +12,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "real_estate", schema = "real_estate")
-public class RealEstate {
+public class Listing {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,9 +56,9 @@ public class RealEstate {
         if(obj == null || obj.getClass() != this.getClass())
             return false;
 
-        RealEstate realEstate = (RealEstate) obj;
+        Listing listing = (Listing) obj;
 
-        return realEstate.getId().equals(this.id);
+        return listing.getId().equals(this.id);
     }
 
     @Override

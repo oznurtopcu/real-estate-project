@@ -39,14 +39,14 @@ public class Company {
 
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private Set<RealEstate> realEstates;
+    private Set<Listing> listings;
 
-    private void addRealEstate(RealEstate realEstate) {
+    private void addListing(Listing listing) {
 
-        if(realEstates == null)
-            realEstates = new HashSet<>();
+        if(listings == null)
+            listings = new HashSet<>();
 
-        realEstates.add(realEstate);
+        listings.add(listing);
     }
 
 }
