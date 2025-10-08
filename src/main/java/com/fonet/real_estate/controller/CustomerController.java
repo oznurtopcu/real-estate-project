@@ -1,5 +1,8 @@
 package com.fonet.real_estate.controller;
 
+import com.fonet.real_estate.dto.CompanyResponseDto;
+import com.fonet.real_estate.dto.CustomerRequestDto;
+import com.fonet.real_estate.dto.CustomerResponseDto;
 import com.fonet.real_estate.entity.Customer;
 import com.fonet.real_estate.service.CustomerService;
 import jakarta.validation.constraints.Positive;
@@ -22,31 +25,96 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAll() {
-        return customerService.getAll();
+    public List<CustomerResponseDto> getAll() {
+
+        return customerService.getAll()
+                .stream()
+                .map(customer -> new CustomerResponseDto(
+                        customer.getFirstName(),
+                        customer.getLastName(),
+                        customer.getPhoneNumber(),
+                        customer.getEmail()))
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Customer getCustomerById(@Positive @PathVariable("id") Long id) {
-        return customerService.findById(id);
+    public CustomerResponseDto getCustomerById(@Positive @PathVariable("id") Long id) {
+
+        Customer customer = customerService.findById(id);
+
+        CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getPhoneNumber(),
+                customer.getEmail());
+
+        return customerResponseDto;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer create(@RequestBody Customer customer) {
-        return customerService.create(customer);
+    public CustomerResponseDto create(@RequestBody CustomerRequestDto customerRequestDto) {
+
+        Customer customer = new Customer();
+        customer.setFirstName(customerRequestDto.getFirstName());
+        customer.setLastName(customerRequestDto.getLastName());
+        customer.setPhoneNumber(customerRequestDto.getPhoneNumber());
+        customer.setEmail(customerRequestDto.getEmail());
+
+        customer = customerService.create(customer);
+
+        CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getPhoneNumber(),
+                customer.getEmail()
+        );
+
+        return customerResponseDto;
     }
 
     @PutMapping("/{id}")
-    public Customer replaceOrCreate(@Positive @PathVariable("id") Long id,
-                                    @Validated @RequestBody Customer customer) {
-        return customerService.replaceOrCreate(id,customer);
+    public CustomerResponseDto replaceOrCreate(@Positive @PathVariable("id") Long id,
+                                    @Validated @RequestBody CustomerRequestDto customerRequestDto) {
+
+        Customer customer = new Customer();
+        customer.setFirstName(customerRequestDto.getFirstName());
+        customer.setLastName(customerRequestDto.getLastName());
+        customer.setPhoneNumber(customerRequestDto.getPhoneNumber());
+        customer.setEmail(customerRequestDto.getEmail());
+
+        customer = customerService.replaceOrCreate(id, customer);
+
+        CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getPhoneNumber(),
+                customer.getEmail()
+        );
+
+        return customerResponseDto;
     }
 
     @PatchMapping("/{id}")
-    public Customer update(@Positive @PathVariable("id") Long id,
-                           @Validated @RequestBody Customer customer) {
-        return customerService.update(id, customer);
+    public CustomerResponseDto update(@Positive @PathVariable("id") Long id,
+                           @Validated @RequestBody CustomerRequestDto customerRequestDto) {
+
+        Customer customer = new Customer();
+        customer.setFirstName(customerRequestDto.getFirstName());
+        customer.setLastName(customerRequestDto.getLastName());
+        customer.setPhoneNumber(customerRequestDto.getPhoneNumber());
+        customer.setEmail(customerRequestDto.getEmail());
+
+        customer = customerService.update(id, customer);
+
+        CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getPhoneNumber(),
+                customer.getEmail()
+        );
+        
+        return customerResponseDto;
     }
 
     @DeleteMapping("/{id}")
