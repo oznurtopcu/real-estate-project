@@ -28,6 +28,7 @@ public class Company {
     @Size(max = 150)
     private String name;
 
+    @Size(max = 255)
     private String address;
 
     @Size(max = 30)
