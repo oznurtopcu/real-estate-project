@@ -24,13 +24,13 @@ public class ListingServiceImpl implements ListingService {
         return listingRepository.findAll();
     }
 
-    //TODO: exception eklenecek
     @Override
     public Listing findById(Long id) {
         return listingRepository.findById(id)
                 .orElseThrow(() -> new ListingNotFoundException(id + " ID'li ilan bulunamadı!"));
     }
 
+    //TODO: relationlar için setleme işlemleri eklenecek !!!!!
     @Override
     public Listing create(Listing listing) {
         return listingRepository.save(listing);
@@ -50,7 +50,6 @@ public class ListingServiceImpl implements ListingService {
         return listingRepository.save(listing);
     }
 
-    //TODO: exception eklenecek
     @Override
     public Listing update(Long id, Listing listing) {
 

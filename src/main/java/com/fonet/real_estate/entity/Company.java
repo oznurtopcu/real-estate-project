@@ -1,5 +1,6 @@
 package com.fonet.real_estate.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -31,10 +32,12 @@ public class Company {
 
     @Size(max = 30)
     @Column(name = "phone_number")
+    @JsonProperty(value = "phone_number")
     private String phoneNumber;
 
     @Size(max = 70)
     @Column(name = "authorized_person")
+    @JsonProperty(value = "authorized_person")
     private String authorizedPerson;
 
 

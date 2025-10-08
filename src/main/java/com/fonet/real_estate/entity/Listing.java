@@ -1,5 +1,6 @@
 package com.fonet.real_estate.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "real_estate", schema = "real_estate")
+@Table(name = "listing", schema = "real_estate")
 public class Listing {
 
     @Id
@@ -21,6 +22,7 @@ public class Listing {
     //ENUM yapılabilir
     private String type;
 
+    @JsonProperty(value = "room_info")
     private String roomInfo;
 
     private Double area;
@@ -39,12 +41,12 @@ public class Listing {
 
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
 
