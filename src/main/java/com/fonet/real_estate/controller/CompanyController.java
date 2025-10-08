@@ -55,23 +55,6 @@ public class CompanyController {
         return companyResponseDto;
     }
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public CompanyResponseDto create(@Validated @RequestBody Company newCompany) {
-//        //return companyService.create(company);
-//
-//
-//        Company company = companyService.create(newCompany);
-//
-//        //TODO: companyResponseDto dönüştürme işlemini farklı bir dosyaya taşı
-//        CompanyResponseDto companyResponseDto = new CompanyResponseDto(
-//                company.getName(),
-//                company.getAddress(),
-//                company.getPhoneNumber(),
-//                company.getAuthorizedPerson());
-//
-//        return companyResponseDto;
-//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -97,19 +80,6 @@ public class CompanyController {
         return companyResponseDto;
     }
 
-//    @PutMapping("/{id}")
-//    public CompanyResponseDto replaceOrCreate(@Positive @PathVariable("id") Long id,
-//                                   @Validated @RequestBody Company company) {
-//
-//        Company updatedCompany = companyService.replaceOrCreate(id, company);
-//        CompanyResponseDto companyResponseDto = new CompanyResponseDto(
-//                updatedCompany.getName(),
-//                updatedCompany.getAddress(),
-//                updatedCompany.getPhoneNumber(),
-//                updatedCompany.getAuthorizedPerson());
-//
-//        return companyResponseDto;
-//    }
 
     @PutMapping("/{id}")
     public CompanyResponseDto replaceOrCreate(@Positive @PathVariable("id") Long id,
@@ -131,21 +101,6 @@ public class CompanyController {
         return companyResponseDto;
     }
 
-
-//    @PatchMapping("/{id}")
-//    public CompanyResponseDto update(@Positive @PathVariable("id") Long id,
-//                          @Validated @RequestBody Company company) {
-//        //return companyService.update(id,company);
-//
-//        Company updatedCompany = companyService.update(id, company);
-//        CompanyResponseDto companyResponseDto = new CompanyResponseDto(
-//                updatedCompany.getName(),
-//                updatedCompany.getAddress(),
-//                updatedCompany.getPhoneNumber(),
-//                updatedCompany.getAuthorizedPerson());
-//
-//        return companyResponseDto;
-//    }
 
     @PatchMapping("/{id}")
     public CompanyResponseDto update(@Positive @PathVariable("id") Long id,
