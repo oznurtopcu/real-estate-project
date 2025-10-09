@@ -2,6 +2,8 @@ package com.fonet.real_estate.controller;
 
 import com.fonet.real_estate.dto.CustomerRequestDto;
 import com.fonet.real_estate.dto.CustomerResponseDto;
+import com.fonet.real_estate.dto.ListingResponseDto;
+import com.fonet.real_estate.entity.Company;
 import com.fonet.real_estate.entity.Customer;
 import com.fonet.real_estate.service.CustomerService;
 import jakarta.validation.constraints.Positive;
@@ -126,5 +128,26 @@ public class CustomerController {
     public void deleteById(@Positive @PathVariable("id") Long id) {
         customerService.deleteById(id);
     }
+
+    @GetMapping("/{id}/listings")
+    public List<ListingResponseDto> getListingsForCustomerId(@Positive @PathVariable("id") Long id) {
+
+        Customer customer = customerService.findById(id);
+
+        return customer.getListings()
+                .stream()
+                .map(listing -> new ListingResponseDto(
+                        listing.getType(),
+                        listing.getRoomInfo(),
+                        listing.getArea(),
+                        listing.getFloor(),
+                        listing.getBuildingFloor(),
+                        listing.getHeatingType(),
+                        listing.getPrice(),
+                        listing.getDescription()))
+                .toList();
+
+    }
+
 
 }

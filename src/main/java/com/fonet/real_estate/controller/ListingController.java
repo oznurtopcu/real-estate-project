@@ -80,7 +80,7 @@ public class ListingController {
         listing.setDescription(listingRequestDto.getDescription());
 
         Company company = companyService.findById(listingRequestDto.getCompanyId());
-        Customer customer = customerService.findById(listingRequestDto.getCompanyId());
+        Customer customer = customerService.findById(listingRequestDto.getCustomerId());
 
         listing.setCompany(company);
         listing.setCustomer(customer);
