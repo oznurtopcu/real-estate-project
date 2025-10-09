@@ -45,7 +45,7 @@ public class Company {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Listing> listings;
 
-    private void addListing(Listing listing) {
+    public void addListing(Listing listing) {
 
         if(listings == null)
             listings = new HashSet<>();
