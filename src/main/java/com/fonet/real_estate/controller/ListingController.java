@@ -2,6 +2,7 @@ package com.fonet.real_estate.controller;
 
 import com.fonet.real_estate.dto.ListingRequestDto;
 import com.fonet.real_estate.dto.ListingResponseDto;
+import com.fonet.real_estate.dto.ListingSearchRequestDto;
 import com.fonet.real_estate.entity.Company;
 import com.fonet.real_estate.entity.Customer;
 import com.fonet.real_estate.entity.Listing;
@@ -122,6 +123,23 @@ public class ListingController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@Positive @PathVariable("id") Long id) {
         listingService.deleteById(id);
+    }
+
+    @PostMapping("/search")
+    public List<ListingResponseDto> searchListings(@RequestBody ListingSearchRequestDto listingSearchRequestDto) {
+
+        return listingService.searchListings(listingSearchRequestDto)
+                .stream()
+                .map(listing -> new ListingResponseDto(
+                        listing.getType(),
+                        listing.getRoomInfo(),
+                        listing.getArea(),
+                        listing.getFloor(),
+                        listing.getBuildingFloor(),
+                        listing.getHeatingType(),
+                        listing.getPrice(),
+                        listing.getDescription()))
+                .toList();
     }
 
 }
