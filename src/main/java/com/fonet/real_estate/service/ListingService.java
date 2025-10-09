@@ -1,5 +1,6 @@
 package com.fonet.real_estate.service;
 
+import com.fonet.real_estate.dto.ListingSearchRequestDto;
 import com.fonet.real_estate.entity.Listing;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface ListingService {
     Listing update(Long id, Listing listing);
 
     void deleteById(Long id);
+
+    List<Listing> searchListings(ListingSearchRequestDto request);
 }

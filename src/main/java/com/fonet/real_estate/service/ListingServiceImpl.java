@@ -1,5 +1,6 @@
 package com.fonet.real_estate.service;
 
+import com.fonet.real_estate.dto.ListingSearchRequestDto;
 import com.fonet.real_estate.entity.Listing;
 import com.fonet.real_estate.exceptions.ListingNotFoundException;
 import com.fonet.real_estate.repository.ListingRepository;
@@ -86,5 +87,18 @@ public class ListingServiceImpl implements ListingService {
     @Override
     public void deleteById(Long id) {
         listingRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Listing> searchListings(ListingSearchRequestDto request) {
+        return listingRepository.searchListings(
+                request.getType(),
+                request.getRoomInfo(),
+                request.getHeatingType(),
+                request.getMinPrice(),
+                request.getMaxPrice(),
+                request.getMinArea(),
+                request.getMaxArea()
+        );
     }
 }
