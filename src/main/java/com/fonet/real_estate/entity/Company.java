@@ -25,18 +25,18 @@ public class Company {
 
     @NotNull
     @NotEmpty
-    @Size(max = 150)
+    @Size(max = 150, message = "150 karakterden fazla olamaz!")
     private String name;
 
-    @Size(max = 255)
+    @Size(max = 255, message = "255 karakterden fazla olamaz!")
     private String address;
 
-    @Size(max = 30)
+    @Size(max = 30, message = "30 karakterden fazla olamaz!")
     @Column(name = "phone_number")
     @JsonProperty(value = "phone_number")
     private String phoneNumber;
 
-    @Size(max = 70)
+    @Size(max = 70, message = "70 karakterden fazla olamaz!")
     @Column(name = "authorized_person")
     @JsonProperty(value = "authorized_person")
     private String authorizedPerson;

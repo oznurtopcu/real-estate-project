@@ -16,19 +16,19 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerPatchRequestDto {
 
-    @Size(max = 45)
+    @Size(max = 45, message = "45 karakterden fazla olamaz!")
     @JsonProperty(value = "first_name")
     private String firstName;
 
-    @Size(max = 45)
+    @Size(max = 45, message = "45 karakterden fazla olamaz!")
     @JsonProperty(value = "last_name")
     private String lastName;
 
-    @Size(max = 30)
+    @Size(max = 30, message = "30 karakterden fazla olamaz!")
     @JsonProperty(value = "phone_number")
     private String phoneNumber;
 
     @Email
-    @Size(max = 100)
+    @Size(max = 100, message = "100 karakterden fazla olamaz!")
     private String email;
 }
