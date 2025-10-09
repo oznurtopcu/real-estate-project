@@ -1,4 +1,4 @@
 package com.fonet.real_estate.dto;
 
-public record CustomerResponseDto (String firstName, String lastName, String phoneNumber, String email){
+public record CustomerResponseDto (Long id, String firstName, String lastName, String phoneNumber, String email){
 }

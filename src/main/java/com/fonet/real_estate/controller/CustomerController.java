@@ -1,6 +1,5 @@
 package com.fonet.real_estate.controller;
 
-import com.fonet.real_estate.dto.CompanyResponseDto;
 import com.fonet.real_estate.dto.CustomerRequestDto;
 import com.fonet.real_estate.dto.CustomerResponseDto;
 import com.fonet.real_estate.entity.Customer;
@@ -30,6 +29,7 @@ public class CustomerController {
         return customerService.getAll()
                 .stream()
                 .map(customer -> new CustomerResponseDto(
+                        customer.getId(),
                         customer.getFirstName(),
                         customer.getLastName(),
                         customer.getPhoneNumber(),
@@ -43,6 +43,7 @@ public class CustomerController {
         Customer customer = customerService.findById(id);
 
         CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getPhoneNumber(),
@@ -64,6 +65,7 @@ public class CustomerController {
         customer = customerService.create(customer);
 
         CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getPhoneNumber(),
@@ -86,6 +88,7 @@ public class CustomerController {
         customer = customerService.replaceOrCreate(id, customer);
 
         CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getPhoneNumber(),
@@ -108,6 +111,7 @@ public class CustomerController {
         customer = customerService.update(id, customer);
 
         CustomerResponseDto customerResponseDto = new CustomerResponseDto(
+                customer.getId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getPhoneNumber(),

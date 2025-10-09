@@ -33,6 +33,7 @@ public class CompanyController {
         return companyService.getAll()
                 .stream()
                 .map(company -> new CompanyResponseDto(
+                        company.getId(),
                         company.getName(),
                         company.getAddress(),
                         company.getPhoneNumber(),
@@ -47,6 +48,7 @@ public class CompanyController {
 
         //TODO: companyResponseDto dönüştürme işlemini farklı bir dosyaya taşı
         CompanyResponseDto companyResponseDto = new CompanyResponseDto(
+                company.getId(),
                 company.getName(),
                 company.getAddress(),
                 company.getPhoneNumber(),
@@ -72,6 +74,7 @@ public class CompanyController {
 
         //TODO: companyResponseDto dönüştürme işlemini farklı bir dosyaya taşı
         CompanyResponseDto companyResponseDto = new CompanyResponseDto(
+                company.getId(),
                 company.getName(),
                 company.getAddress(),
                 company.getPhoneNumber(),
@@ -93,6 +96,7 @@ public class CompanyController {
 
         Company updatedCompany = companyService.replaceOrCreate(id, company);
         CompanyResponseDto companyResponseDto = new CompanyResponseDto(
+                updatedCompany.getId(),
                 updatedCompany.getName(),
                 updatedCompany.getAddress(),
                 updatedCompany.getPhoneNumber(),
@@ -115,6 +119,7 @@ public class CompanyController {
 
         Company updatedCompany = companyService.update(id, company);
         CompanyResponseDto companyResponseDto = new CompanyResponseDto(
+                updatedCompany.getId(),
                 updatedCompany.getName(),
                 updatedCompany.getAddress(),
                 updatedCompany.getPhoneNumber(),
