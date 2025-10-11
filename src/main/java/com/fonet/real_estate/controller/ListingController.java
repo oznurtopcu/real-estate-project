@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/listing")
 public class ListingController {
@@ -105,19 +106,20 @@ public class ListingController {
         return listingResponseDto;
     }
 
-    @PutMapping("/{id}")
-    public Listing replaceOrCreate(@Positive @PathVariable("id") Long id,
-                                   @Validated @RequestBody Listing listing) {
-
-
-        return listingService.replaceOrCreate(id, listing);
-    }
-
-    @PatchMapping("/{id}")
-    public Listing update(@Positive @PathVariable("id") Long id,
-                          @Validated @RequestBody Listing listing) {
-        return listingService.update(id, listing);
-    }
+    //TODO: PUT ve PATCH request düzenlemesi yapılacak.
+//    @PutMapping("/{id}")
+//    public Listing replaceOrCreate(@Positive @PathVariable("id") Long id,
+//                                   @Validated @RequestBody Listing listing) {
+//
+//
+//        return listingService.replaceOrCreate(id, listing);
+//    }
+//
+//    @PatchMapping("/{id}")
+//    public Listing update(@Positive @PathVariable("id") Long id,
+//                          @Validated @RequestBody Listing listing) {
+//        return listingService.update(id, listing);
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
