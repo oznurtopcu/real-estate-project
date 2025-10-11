@@ -9,7 +9,18 @@ import java.util.List;
 
 public interface ListingRepository extends JpaRepository<Listing, Long> {
 
+    //PARTIAL - CASE INSENSITIVE QUERY
+//    @Query("SELECT l FROM Listing l " +
+//            "WHERE (:type IS NULL OR LOWER(l.type) LIKE LOWER(CONCAT('%', :type, '%'))) " +
+//            "AND (:roomInfo IS NULL OR LOWER(l.roomInfo) LIKE LOWER(CONCAT('%', :roomInfo, '%'))) " +
+//            "AND (:heatingType IS NULL OR LOWER(l.heatingType) LIKE LOWER(CONCAT('%', :heatingType, '%'))) " +
+//            "AND (:minPrice IS NULL OR l.price >= :minPrice) " +
+//            "AND (:maxPrice IS NULL OR l.price <= :maxPrice) " +
+//            "AND (:minArea IS NULL OR l.area >= :minArea) " +
+//            "AND (:maxArea IS NULL OR l.area <= :maxArea)")
 
+
+    //TAM ESLESME SAGLAYAN QUERY
     @Query("SELECT l FROM Listing l " +
             "WHERE (:type IS NULL OR l.type = :type) " +
             "AND (:roomInfo IS NULL OR l.roomInfo = :roomInfo) " +
